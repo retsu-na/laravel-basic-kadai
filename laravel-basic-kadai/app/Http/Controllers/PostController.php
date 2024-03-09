@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
+use App\Models\Post;
 
 
 use Illuminate\Http\Request;
@@ -14,5 +15,12 @@ class PostController extends Controller
         $posts = DB::table('posts')->get();
 
         return view('posts.index', compact('posts'));
+    }
+
+    public function show($id) {
+        $post = Post::find($id);
+
+        // 変数$productをproducts/show.blade.phpファイルに渡す
+        return view('posts.show', compact('post'));
     }
 }
